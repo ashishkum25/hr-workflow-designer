@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# HR Workflow Designer (Frontend Internship Assignment)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A visual workflow builder that allows HR teams to design and simulate onboarding
+and approval workflows using a node-based interface.
 
-Currently, two official plugins are available:
+Built as part of the Frontend Internship assignment.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Visual workflow design using **React Flow**
+- Node types:
+  - Start
+  - Task
+  - Approval
+  - Automated Step
+  - End
+- Sidebar to add nodes
+- Click-to-edit node configuration panel
+- Real-time edge connections between nodes
+- Workflow validation rules:
+  - Only one Start node allowed
+  - At least one End node required
+- Workflow sandbox to simulate execution
+- Step-by-step execution logs
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **React + TypeScript**
+- **Vite**
+- **React Flow**
+- CSS (custom styling)
+- Mock API layer (simulated backend)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🧠 Architecture Overview
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- `components/Canvas`  
+  Handles React Flow canvas and custom node rendering
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `components/NodeFormPanel`  
+  Dynamic configuration forms for each node type
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- `components/Sandbox`  
+  Workflow validation and execution simulation
+
+- `hooks/`
+  - `useWorkflow`: manages nodes, edges, selection
+  - `useAutomations`: fetches mock automation actions
+
+- `api/`
+  - `/automations`: simulated GET endpoint
+  - `/simulate`: simulated POST workflow execution
+
+---
+
+## ▶️ Running the project locally
+
+```bash
+npm install
+npm run dev
